@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.shortcuts import get_object_or_404
 
+import forms
+
 from .models import *
 # Create your views here.
 class IndexView(View):
@@ -18,3 +20,11 @@ class EventView(View):
         context['event_specified'] = get_object_or_404(Event, pk=event_id)
 
         return render(request, "events/event.html", context)
+
+class NewEventView(View):
+    def get(self, request):
+        context = {}
+
+        context['event_form'] = forms.EventForm()
+
+        return render(request, 'events/createEvent.html', context)
