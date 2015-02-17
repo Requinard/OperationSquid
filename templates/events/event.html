@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="page-header">{{ event_specified }}</h1>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-md-6">
+		<p>{{ event_specified.description|escape }}</p>
+	</div>
+		<div class="col-md-6 alert alert-info">
+			<h2>Location</h2>
+			{{ event_specified.location }}
+		</div>
+	</div>
+{% endblock %}
