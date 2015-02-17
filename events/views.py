@@ -36,7 +36,7 @@ class NewEventView(View):
         if form.is_valid():
              form.clean()
              form.save()
-             return redirect("event:event")
+             return redirect("events:index")
         else:
             context["event_form"] = form
             return render(request, 'events/createEvent.html', context)
