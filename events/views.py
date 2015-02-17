@@ -5,4 +5,4 @@ from django.views.generic import View
 class IndexView(View):
     def get(self, request):
         context = {}
-        return render(request, "events/base.html", context)
+        return render(request, "events/index.html", context)
