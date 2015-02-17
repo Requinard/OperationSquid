@@ -10,6 +10,9 @@ class Event(models.Model):
     registration_open = models.BooleanField(default=False)
     event_date = models.DateTimeField()
 
+    def __str__(self):
+        return self.name
+
 class Registration(models.Model):
     related_event = models.ForeignKey(Event)
     related_user = models.ForeignKey(User)

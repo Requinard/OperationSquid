@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="row">
+<div class="col-xs-12"><h1 class="page-header">Open events</h1></div>
+<div class="col-sm-12">
+	<ul class="list-group">
+		{% for event in events_open %}
+			<li class="list-group-item"><p>{{ event }}<a href="#" class="pull-right btn btn-primary">More info</a></p></li>
+		{% endfor %}
+	</ul>
+</div>
+</div>
 {% endblock %}
