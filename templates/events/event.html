@@ -9,6 +9,11 @@
 	<div class="row">
 		<div class="col-md-6">
 			<p>{{ event_specified.description|escape }}</p>
+			{% if registration %}
+				<p class="btn btn-block btn-success">You are registered for this event!</p>
+			{% else %}
+			<a href="{% url "events:attend" event_specified.id %}" class="btn btn-block	 btn-primary">Attend this event!</a>
+			{% endif %}
 		</div>
 		<div class="col-md-6 alert alert-info">
 			<h2>Location</h2>
