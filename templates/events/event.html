@@ -7,12 +7,30 @@
 		</div>
 	</div>
 	<div class="row">
-	<div class="col-md-6">
-		<p>{{ event_specified.description|escape }}</p>
-	</div>
+		<div class="col-md-6">
+			<p>{{ event_specified.description|escape }}</p>
+		</div>
 		<div class="col-md-6 alert alert-info">
 			<h2>Location</h2>
 			{{ event_specified.location }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<h2>Confirmed Attendees</h2>
+
+			<ul class="list-group">
+				{% for attendee in event_specified.GetAllConfirmedAttendees %}
+					<li class="list-group-item list-group-item-success">{{ attendee.related_user.get_full_name }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="col-md-6"><h2>Pending Attendees</h2>
+			<ul class="list-group">
+				{% for attendee in event_specified.GetAllPendingAttendees %}
+					<li class="list-group-item list-group-item-warning">{{ attendee.related_user.get_full_name }}</li>
+				{% endfor %}
+			</ul>
 		</div>
 	</div>
 {% endblock %}
