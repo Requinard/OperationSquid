@@ -10,7 +10,10 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 from django.contrib.messages import constants as messages
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -39,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'crispy_forms',
     'debug_toolbar',
+    'social.apps.django_app.default',
     'events',
 )
 
@@ -50,6 +54,24 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'OperationSquid.urls'
@@ -99,10 +121,23 @@ TEMPLATE_DIRS = (
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Messages tags
+
 MESSAGE_TAGS = {
-    messages.DEBUG : 'default',
-    messages.INFO : 'primary',
-    messages.SUCCESS : 'success',
-    messages.WARNING : 'warning',
-    messages.ERROR : 'danger',
+    messages.DEBUG: 'default',
+    messages.INFO: 'primary',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
 }
+
+# Social Auth
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/user/login/"
+SOCIAL_AUTH_LOGIN_URL = "/user/login/"
+
+SOCIAL_AUTH_DEFAULT_USERNAME = "Jaden Doe"
+
+SOCIAL_AUTH_TWITTER_KEY = "cOjawfhibufn6jJh6GSQSZk69"
+SOCIAL_AUTH_TWITTER_SECRET = "ML2pD3CTNnBnAcjubqmXFmK8kuRHmLWSfy9M81joC9xz2EFdu2"
+
+SOCIAL_AUTH_FACEBOOK_KEY = "681442585301110"
+SOCIAL_AUTH_FACEBOOK_SECRET = "0618b289a90a490018803451a4ffcc74"
