@@ -19,11 +19,10 @@ class EventView(View):
         context = {}
 
         context['event_specified'] = get_object_or_404(Event, pk=event_id)
-
-        reg = Registration.objects.get(related_event__id=event_id, related_user=request.user)
-
-        if reg.related_user == request.user:
-            context['registration'] = reg
+        try:
+            context['registration'] = Registration.objects.get(related_event__id=event_id, related_user=request.user)
+        except:
+            pass
 
         return render(request, "events/event.html", context)
 
