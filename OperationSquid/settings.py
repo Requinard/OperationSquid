@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.contrib.messages import constants as messages
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -96,3 +97,12 @@ TEMPLATE_DIRS = (
 # Crispy Forms Setup
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# Messages tags
+MESSAGE_TAGS = {
+    messages.DEBUG : 'default',
+    messages.INFO : 'primary',
+    messages.SUCCESS : 'success',
+    messages.WARNING : 'warning',
+    messages.ERROR : 'danger',
+}

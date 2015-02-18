@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from .forms import *
 
 
@@ -24,6 +25,7 @@ class LoginView(View):
                 # Check if the password was verified
                 if user.is_active:
                     login(request, user)
+                    messages.success(request, "Login successful")
                     return redirect("events:index")
                 else:
                     context['error'] = "This user has been banned!"
@@ -37,7 +39,7 @@ class LoginView(View):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-
+        messages.success(request, "Logout successful")
         return redirect("user:login")
 
 
