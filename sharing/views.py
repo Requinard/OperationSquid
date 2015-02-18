@@ -36,3 +36,16 @@ class NewMessageView(View):
             form.save()
 
             return redirect("live:index", event_id)
+        else:
+            context = {}
+            context['upload-form'] = form
+            return render(request, "sharing/newMessage.html", context)
+
+class MessageView(View):
+    def get(self, request, event_id, message_id):
+        context = {}
+
+        context['event'] = get_object_or_404(Event, pk=event_id)
+        context['message'] = get_object_or_404(models.Message, pk=message_id)
+
+        return render(request, "sharing/message.html", context)
