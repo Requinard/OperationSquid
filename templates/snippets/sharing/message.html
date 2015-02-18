@@ -1,10 +1,12 @@
 <div class="row well">
 	<div class="col-md-12">
 		<h3><a href="{% url "live:message" event.id message.id %}">{{ message.title }}</a></h3>
-		<h5>{{ message.related_user.get_full_name}} on {{ message.date_created|date }}</h5>
+		<h5>{{ message.related_user.get_full_name }} on {{ message.date_created|date }}</h5>
 		{% if message.file %}
 			<img class="img-responsive" src="{{ message.file.url }}">
 		{% endif %}
 		<p>{{ message.body|escape }}</p>
+
+		<p>Tagged as: <i>{% for category in message.related_categories.all %} {{ category }}, {% endfor %}</i></p>
 	</div>
 </div>
