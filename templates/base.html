@@ -36,7 +36,7 @@
 						<ul class="dropdown-menu">
 							{% if user_events_active %}
 								{% for event in user_events_active %}
-									<li><a href="#">{{ event.related_event }}</a></li>
+									<li class="bg-{{ event.related_event.GetOpenTag }}"><a href="#">{{ event.related_event }}</a></li>
 								{% endfor %}
 							{% else %}
 								<li><p class="navbar-text">There's nothing!</p></li>

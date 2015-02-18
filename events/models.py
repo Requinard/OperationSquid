@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.timezone import datetime
 
 # Create your models here.
 class Event(models.Model):
@@ -21,6 +22,17 @@ class Event(models.Model):
 
     def GetAllPendingAttendees(self):
         return self.GetAllAttendees().filter(paid=False)
+
+    def GetOpenTag(self):
+        if self.event_date.date() == datetime.now().date():
+            return "success"
+        elif self.event_date.date() > datetime.now().date():
+            return "primary"
+        else:
+            return "warning"
+
+    class Meta:
+        ordering = ["-event_date"]
 
 class Registration(models.Model):
     related_event = models.ForeignKey(Event)
