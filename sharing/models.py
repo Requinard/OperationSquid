@@ -12,5 +12,10 @@ class Message(models.Model):
     body = models.TextField(null=True)
     file = models.FileField(upload_to='documents/%Y/%m/%d/%H/%M/%S', null=True, blank=True)
 
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-date_created',)
+
 class Category(models.Model):
     name = models.CharField(max_length=20)

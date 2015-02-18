@@ -16,6 +16,14 @@
 
 		<div class="col-md-3">
 			<h2>Messages</h2>
+			{% if latest_messages %}
+				{% for message in latest_messages %}
+					{% include 'snippets/sharing/message.html' %}
+				{% endfor %}
+			{% else %}
+				<p>There's nothing here!</p>
+
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

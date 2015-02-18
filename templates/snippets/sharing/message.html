@@ -1,0 +1,10 @@
+<div class="row">
+	<div class="col-md-12">
+		<h3>{{ message.title }}</h3>
+		<h5>{{ message.related_user.get_full_name}} on {{ message.date_created|date }}</h5>
+		{% if message.file %}
+			<img class="img-responsive" src="{{ message.file.url }}">
+		{% endif %}
+		<p>{{ message.body|escape }}</p>
+	</div>
+</div>
