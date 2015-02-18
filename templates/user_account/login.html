@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 col-xs-12">
+			<h2 class="page-header text-center">
+				Login
+			</h2>
+
+			{% if error%}
+			<div class="alert alert-danger">{{ error }}</div>
+			{% endif %}
+			<div class="row">
+				<div class="col-md-8">
+					<h3>SME Account</h3>
+					{% crispy login-form %}
+			</div>
+				<div class="col-md-4">
+					<h3>Social Media</h3>
+					<a href="#" class="btn btn-primary btn-block">Facebook</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
