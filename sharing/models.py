@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from events.models import Event
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+
 # Create your models here.
 class Message(models.Model):
     related_user = models.ForeignKey(User)
@@ -10,7 +13,8 @@ class Message(models.Model):
 
     title = models.CharField(max_length=20)
     body = models.TextField(null=True)
-    file = models.FileField(upload_to='documents/%Y/%m/%d/%H/%M/%S', null=True, blank=True)
+    file= models.FileField(upload_to='documents/%Y/%m/%d/%H/%M/%S', null=True, blank=True)
+
 
     date_created = models.DateTimeField(auto_now_add=True)
 
@@ -22,3 +26,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+@receiver(pre_delete, sender=Message)
+def DeleteRelatedMedia(sender, instance=None, **kwargs):
+    if instance is not None:
+        instance.file.delete()

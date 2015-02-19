@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'debug_toolbar',
     'social.apps.django_app.default',
+    'user_account',
     'events',
     'sharing',
 )
