@@ -40,6 +40,9 @@ class AttendEventView(View):
 
 class NewEventView(View):
     def get(self, request):
+        if request.user.privilege.level == 1:
+            return redirect("events:index")
+
         context = {}
 
         context['event_form'] = forms.EventForm()
@@ -47,6 +50,9 @@ class NewEventView(View):
         return render(request, 'events/createEvent.html', context)
 
     def post(self, request):
+        if request.user.privilege.level == 1:
+            return redirect("events:index")
+
         context = {}
 
         form = forms.EventForm(request.POST)
