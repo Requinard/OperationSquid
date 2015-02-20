@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import *
 
@@ -44,8 +45,14 @@ class LogoutView(View):
 
 class IndexView(View):
     def get(self, request):
-        return render(request, "base.html", {})
+        context = {}
+
+        context['user'] = request.user
+        return render(request, "user_account/userpage.html", context)
 
 class UserPageView(View):
     def get(self, request, username):
-        return render(request, "base.html", {})
+        context = {}
+
+        context['user'] = get_object_or_404(User, username=username)
+        return render(request, "user_account/userpage.html", context)

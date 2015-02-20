@@ -47,6 +47,8 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
 						   role="button">Hi {{ user.first_name }} <span class="caret"></span> </a>
 						<ul class="dropdown-menu">
+							<li><a href="{% url 'user:index' %}">Your page</a> </li>
+							<li class="divider"></li>
 							<li><a href="{% url 'user:logout' %}">Log out</a></li>
 						</ul>
 					</li>
