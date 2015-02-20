@@ -42,6 +42,7 @@ class NewMessageView(View):
             return render(request, "sharing/newMessage.html", context)
 
 class MessageView(View):
+    @method_decorator(login_required)
     def get(self, request, event_id, message_id):
         context = {}
 
