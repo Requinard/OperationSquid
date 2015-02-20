@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
+from  django.contrib.auth.decorators import login_required
 
 import forms
 from .models import *
@@ -28,6 +31,7 @@ class EventView(View):
 
 
 class AttendEventView(View):
+    @method_decorator(login_required())
     def get(self, request, event_id):
         event = get_object_or_404(Event, pk=event_id)
 
@@ -39,8 +43,10 @@ class AttendEventView(View):
 
 
 class NewEventView(View):
+    @method_decorator(login_required)
     def get(self, request):
         if request.user.privilege.level == 1:
+            messages.warning(request, "You do not have the authority to access that page!")
             return redirect("events:index")
 
         context = {}
@@ -49,8 +55,10 @@ class NewEventView(View):
 
         return render(request, 'events/createEvent.html', context)
 
+    @method_decorator(login_required)
     def post(self, request):
         if request.user.privilege.level == 1:
+            messages.warning(request, "You do not have the authority to access that page!")
             return redirect("events:index")
 
         context = {}
