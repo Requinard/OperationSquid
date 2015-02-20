@@ -26,6 +26,8 @@ class UserPrivilege(models.Model):
             privilege = UserPrivilege.objects.get(related_user=User)
             privilege.delete()
 
+    def __str__(self):
+        return self.related_user.username
 
 class UserProfile(models.Model):
     related_user = models.OneToOneField(User, related_name="profile")
@@ -42,6 +44,9 @@ class UserProfile(models.Model):
             p = UserProfile.objects.get(related_user=instance)
             p.delete()
 
+    def __str__(self):
+        return self.related_user.username
+
 
 class UserSettings(models.Model):
     related_user = models.OneToOneField(User, related_name="settings")
@@ -57,3 +62,6 @@ class UserSettings(models.Model):
         if instance:
             p = UserSettings.objects.get(related_user=instance)
             p.delete()
+
+    def __str__(self):
+        return self.related_user.username

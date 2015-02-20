@@ -4,6 +4,10 @@
 <div class="row">
 <div class="col-xs-12"><h1 class="page-header">Open events</h1></div>
 <div class="col-sm-12">
+{% if user.privilege > 1 %}
+<a class="btn btn-block btn-default" href="{% url 'events:new' %}">Create New Event</a>
+	<div class="divider"></div>
+{% endif %}
 	<ul class="list-group">
 		{% for event in events_open %}
 			<li class="list-group-item"><p>{{ event }}<a href="{% url 'events:event' event.id %}" class="pull-right btn btn-primary">More info</a></p></li>

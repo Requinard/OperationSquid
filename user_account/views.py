@@ -42,4 +42,10 @@ class LogoutView(View):
         messages.success(request, "Logout successful")
         return redirect("user:login")
 
+class IndexView(View):
+    def get(self, request):
+        return render(request, "base.html", {})
 
+class UserPageView(View):
+    def get(self, request, username):
+        return render(request, "base.html", {})
