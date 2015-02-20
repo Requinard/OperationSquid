@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content-full %}
+<div class="row">
+<div class="col-md-3">
+	<a href="{% url 'overseer:createNews' event.id %}">Create news</a>
+	<a href="{% url 'overseer:createAppointment' event.id %}">Create appointment</a>
+</div>
+</div>
+{% endblock %}

@@ -12,5 +12,6 @@ urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + pa
     url(r'^external/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^live/', include('sharing.urls', namespace='live')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^overseer/', include('overseer.urls', namespace="overseer")),
     url(r'^', include("events.urls", namespace="events")),
 )
