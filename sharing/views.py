@@ -14,6 +14,10 @@ class IndexView(View):
         context = {}
         context['event'] = get_object_or_404(Event, pk=event_id)
         context['latest_messages'] = models.Message.objects.all()[:10]
+        context['news'] = models.News.objects.filter(related_event =context['event'])
+        context['agenda'] = models.Appointment.objects.filter(related_event=context['event'])[:5]
+
+        print context['news']
         return render(request, "sharing/index.html", context)
 
 class NewMessageView(View):
@@ -52,6 +56,7 @@ class MessageView(View):
         context['event'] = get_object_or_404(Event, pk=event_id)
         context['message'] = get_object_or_404(models.Message, pk=message_id)
         context['comments'] = models.Comment.objects.filter(related_message=context['message'])
+
 
         return render(request, "sharing/message.html", context)
     def post(self, request, event_id, message_id):

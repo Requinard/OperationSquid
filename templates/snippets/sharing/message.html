@@ -1,4 +1,4 @@
-<div class="row well">
+<div class="row">
 	<div class="col-md-12">
 		<h3><a href="{% url "live:message" event.id message.id %}">{{ message.title }}</a></h3>
 		<h5>{{ message.related_user.get_full_name }} on {{ message.date_created|date }}</h5>
@@ -8,5 +8,6 @@
 		<p>{{ message.body|escape }}</p>
 
 		<p>Tagged as: <i>{% for category in message.related_categories.all %} {{ category }}, {% endfor %}</i></p>
+	<p>{{ message|length }} comments</p>
 	</div>
 </div>

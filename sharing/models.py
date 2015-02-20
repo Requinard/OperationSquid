@@ -21,6 +21,9 @@ class Message(models.Model):
     class Meta:
         ordering = ('-date_created',)
 
+    def __len__(self):
+        return len(Comment.objects.filter(related_message=self))
+
 
 class Comment(models.Model):
     related_message = models.ForeignKey(Message)
@@ -35,6 +38,31 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ("-date_created",)
+
+class Appointment(models.Model):
+    related_event = models.ForeignKey(Event)
+
+    date = models.DateField()
+
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    title = models.CharField(max_length=20)
+    body = models.TextField()
+
+    class Meta:
+        ordering = ("date", "start_time")
+
+class News(models.Model):
+    related_event = models.ForeignKey(Event)
+
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    title = models.CharField(max_length=24)
+    body = models.TextField()
+
+    class Meta:
+        ordering = ("-date_posted", )
 
 class Category(models.Model):
     name = models.CharField(max_length=20)

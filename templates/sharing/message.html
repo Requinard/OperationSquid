@@ -14,7 +14,7 @@
 						<p>{{ comment.body }}</p>
 
 						<p><strong>Posted by </strong> {{ comment.related_user.get_full_name }}
-							<strong>on</strong> {{ comment.date_created|date:"%m %d" }}</p>
+							<strong>on</strong> {{ comment.date_created|date }}</p>
 					</div>
 				{% endfor %}
 			</div>

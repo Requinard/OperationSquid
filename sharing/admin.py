@@ -13,3 +13,5 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Category, CategoryAdmin)
 admin.site.register(models.Message, MessageAdmin)
+admin.site.register(models.Appointment)
+admin.site.register(models.News)

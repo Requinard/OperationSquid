@@ -4,26 +4,64 @@
 	<div class="row">
 		<div class="col-md-9">
 			<div class="row">
-				<div class="col-md-8"><h2 class="text-center">News</h2></div>
-				<div class="col-md-4"><h2>Agenda</h2></div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<h2>Reserver</h2>
+				<div class="col-sm-12">
+					<div class="col-md-8">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h2 class="text-center">News</h2>
+							</div>
+							<div class="panel-body">
+								{% for item in news %}
+									<h1>{{ item.title }}</h1>
+									<p>{{ item.body|truncatewords:20 }}</p>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-success">
+							<div class="panel-heading">
+								<h2>Agenda</h2>
+							</div>
+							<div class="panel-body">
+								{% for appointment in agenda %}
+									<p>{{ appointment.title }} - {{ appointment.start_time }}
+										to {{ appointment.end_time }}</p>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h2>Reserveren</h2>
+						</div>
+						<div class="panel-body"></div>
+					</div>
+
 				</div>
 			</div>
 		</div>
 
 		<div class="col-md-3">
-			<h2>Messages - <a href="{% url 'live:new_message' event.id %}">New Message</a> </h2>
-			{% if latest_messages %}
-				{% for message in latest_messages %}
-					{% include 'snippets/sharing/message.html' %}
-				{% endfor %}
-			{% else %}
-				<p>There's nothing here!</p>
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<h2>Messages - <a href="{% url 'live:new_message' event.id %}">New Message</a></h2>
+			</div>
+			<div class="panel-body">
+				{% if latest_messages %}
+					{% for message in latest_messages %}
+						{% include 'snippets/sharing/message.html' %}
+					{% endfor %}
+				{% else %}
+					<p>There's nothing here!</p>
 
-			{% endif %}
+				{% endif %}
+			</div>
+		</div>
+
+
 		</div>
 	</div>
 {% endblock %}
