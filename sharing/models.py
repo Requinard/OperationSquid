@@ -21,6 +21,21 @@ class Message(models.Model):
     class Meta:
         ordering = ('-date_created',)
 
+
+class Comment(models.Model):
+    related_message = models.ForeignKey(Message)
+    related_user = models.ForeignKey(User)
+
+    body = models.TextField()
+
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.body
+
+    class Meta:
+        ordering = ("-date_created",)
+
 class Category(models.Model):
     name = models.CharField(max_length=20)
 

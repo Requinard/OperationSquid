@@ -1,9 +1,27 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-<div class="row">
-<div class="col-sm-12">
-	{% include 'snippets/sharing/message.html' %}
-</div>
-</div>
+	<div class="row">
+		<div class="col-sm-12">
+			{% include 'snippets/sharing/message.html' %}
+		</div>
+		<div class="row">
+			<div class="col-md-9">
+				{% for comment in comments %}
+					<div class="well">
+						<p>{{ comment.body }}</p>
+
+						<p><strong>Posted by </strong> {{ comment.related_user.get_full_name }}
+							<strong>on</strong> {{ comment.date_created|date:"%m %d" }}</p>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="col-md-3">
+				<h3>Leave a comment</h3>
+				{% crispy comment_form %}
+			</div>
+		</div>
+	</div>
 {% endblock %}
