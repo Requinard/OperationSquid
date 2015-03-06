@@ -113,15 +113,15 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = "/user/login/"
 LOGIN_URL = "/user/login/"
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "statics/media")
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "statics/static"),
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "templates"),
+    os.path.join(BASE_DIR, "statics/templates"),
 )
 
 # Crispy Forms Setup
