@@ -1,6 +1,5 @@
 {% load staticfiles %}
 
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -24,7 +23,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">SME</a>
+			<a class="navbar-brand" href="{% url 'events:index' %}">SME</a>
 		</div>
 		<div class="collapse navbar-collapse navbar-right" id="navbar-collapsible">
 			<ul class="navbar-nav nav">
@@ -32,11 +31,14 @@
 
 				{% if user.is_authenticated %}
 					<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Your events <span class="badge">{{ user_events_active|length }}</span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Your events <span
+								class="badge">{{ user_events_active|length }}</span></a>
 						<ul class="dropdown-menu">
 							{% if user_events_active %}
 								{% for event in user_events_active %}
-									<li class="bg-{{ event.related_event.GetOpenTag }}"><a href="{% url 'live:index' event.related_event.id %}">{{ event.related_event }}</a></li>
+									<li class="bg-{{ event.related_event.GetOpenTag }}"><a
+											href="{% url 'live:index' event.related_event.id %}">{{ event.related_event }}</a>
+									</li>
 								{% endfor %}
 							{% else %}
 								<li><p class="navbar-text">There's nothing!</p></li>
@@ -47,11 +49,15 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
 						   role="button">Hi {{ user.first_name }} <span class="caret"></span> </a>
 						<ul class="dropdown-menu">
-							<li><a href="{% url 'user:index' %}">Your page</a> </li>
+							<li><a href="{% url 'user:index' %}">Your page</a></li>
 							<li class="divider"></li>
 							{% if user.privilege.level > 1 %}
-								<li><a href="{% url 'overseer:index_general' %}">Overseer</a> </li>
+								<li><a href="{% url 'overseer:index_general' %}">Overseer</a></li>
+								{% if user.is_superuser %}
+									<li><a href="{% url 'admin:index' %}">Admin</a></li>
 								{% endif %}
+								<li class="divider"></li>
+							{% endif %}
 							<li><a href="{% url 'user:logout' %}">Log out</a></li>
 						</ul>
 					</li>
