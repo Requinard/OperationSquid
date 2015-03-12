@@ -5,7 +5,7 @@ from forms import NewsForm, AppointmentForm
 from events.models import Event
 # Create your views here.
 class IndexView(View):
-    def get(self, request, event_id):
+    def get(self, request, event_id=0):
         context = {}
 
         context['news_form'] = NewsForm()

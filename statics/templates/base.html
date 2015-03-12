@@ -49,6 +49,9 @@
 						<ul class="dropdown-menu">
 							<li><a href="{% url 'user:index' %}">Your page</a> </li>
 							<li class="divider"></li>
+							{% if user.privilege.level > 1 %}
+								<li><a href="{% url 'overseer:index_general' %}">Overseer</a> </li>
+								{% endif %}
 							<li><a href="{% url 'user:logout' %}">Log out</a></li>
 						</ul>
 					</li>
