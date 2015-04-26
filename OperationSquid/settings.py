@@ -41,7 +41,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'debug_toolbar',
     'social.apps.django_app.default',
     'user_account',
     'events',
@@ -81,14 +80,21 @@ ROOT_URLCONF = 'OperationSquid.urls'
 
 WSGI_APPLICATION = 'OperationSquid.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'default' : {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pts2',
+        'USER': 'pts2',
+        'PASSWORD': 'uXsPQQzmsuCATavF',
+        'HOST': 'terarion.com',
+        'PORT': '3306',
     }
 }
 
