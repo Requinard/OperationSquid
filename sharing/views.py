@@ -4,6 +4,7 @@ from django.views.generic import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from events.models import Event
+from reservations.models import Item
 import models
 import forms
 
@@ -16,6 +17,7 @@ class IndexView(View):
         context['latest_messages'] = models.Message.objects.all()[:10]
         context['news'] = models.News.objects.filter(related_event =context['event'])
         context['agenda'] = models.Appointment.objects.filter(related_event=context['event'])[:5]
+        context['items'] = Item.objects.filter(relatedEvent=context['event'])
 
         print context['news']
         return render(request, "sharing/index.html", context)

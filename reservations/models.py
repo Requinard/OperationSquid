@@ -1,13 +1,22 @@
 from django.db import models
-
+from events.models import Event
 # Create your models here.
 class BaseReservation(models.Model):
-    resource = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
+    description = models.TextField()
+    price = models.DecimalField(decimal_places=2, max_digits=6)
+    relatedEvent = models.ForeignKey(Event)
     class Meta:
         abstract = True
 
 class Spot(BaseReservation):
-    name = models.CharField(max_length=30)
+    isNoisy = models.BooleanField()
+    isFarAway = models.BooleanField()
+    isCloseToBathroom = models.BooleanField()
+    isTent = models.BooleanField()
+
+    capacity = models.SmallIntegerField()
 
 class Item(BaseReservation):
-    resource_id = models.CharField(max_length=30)
+    amountAvailable = models.SmallIntegerField()
+    image = models.FileField(upload_to='equipment/%Y/%m/%d/%H/%M/%S', null=True, blank=True)

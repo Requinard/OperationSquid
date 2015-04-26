@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+		<div class="row">
+			<div class="col-sm-12">
+				<h1 class="page-header">Overseer</h1>
+			</div>
+			<div class="col-sm-8">
+				<ul class="list-group">
+					{% for event in events %}
+
+						<a href="{% url 'overseer:index' event.id %}" ><li class="list-group-item list-group-item-{{ event.GetOpenStatus }}">{{ event.name }}</li></a>
+					{% endfor %}
+
+				</ul>
+			</div>
+		<div class="col-sm-4">
+			<a href="{% url 'events:new'%}" class="btn btn-primary btn-block">Create new event</a>
+		</div>
+		</div>
+{% endblock %}

@@ -13,6 +13,15 @@ class IndexView(View):
 
         return render(request, "overseer/index.html", context)
 
+class AllView(View):
+    def get(self,request):
+
+        context  = {}
+
+        context['events'] = Event.objects.all()
+
+        return render(request, "overseer/all.html", context)
+
 class NewsView(View):
     def get(self, request, event_id):
         context = {}

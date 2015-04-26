@@ -2,11 +2,16 @@
 
 {% load crispy_forms_tags %}
 
-{% block content-full %}
-<div class="row">
-<div class="col-md-3">
-	<a href="{% url 'overseer:createNews' event.id %}">Create news</a>
-	<a href="{% url 'overseer:createAppointment' event.id %}">Create appointment</a>
-</div>
-</div>
+{% block content %}
+	<div class="row">
+		<div class="col-md-3">
+			<h2><a href="{% url 'overseer:createNews' event.id %}" class="btn btn-danger btn-lg btn-block">Create
+				news</a></h2>
+		</div>
+
+		<div class="col-md-3">
+		<h2><a href="{% url 'overseer:createAppointment' event.id %}" class="btn btn-warning btn-lg btn-block">Create an event</a></h2>
+		</div>
+	</div>
+	</div>
 {% endblock %}
